@@ -1,0 +1,9 @@
+#vBox {
+    -fx-background-color: #cfbcbc;
+}
+
+.menu-item {
+    -fx-min-height: 60px; /* chiều cao của mỗi phần tử con trong menu */
+    -fx-alignment: center;
+}
+
