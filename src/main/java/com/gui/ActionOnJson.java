@@ -3,14 +3,12 @@ package com.gui;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.nio.charset.Charset;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 
 import javafx.scene.image.Image;
 

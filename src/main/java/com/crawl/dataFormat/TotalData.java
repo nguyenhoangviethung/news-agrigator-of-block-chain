@@ -152,7 +152,7 @@ public class TotalData {
             Collections.shuffle(data);
             String json = gson.toJson(data);
     
-            FileWriter fileWriter = new FileWriter("src\\main\\resources\\com\\gui\\data.json",Charset.forName("UTF-8"));
+            FileWriter fileWriter = new FileWriter("src\\main\\resources\\com\\data\\data.json",Charset.forName("UTF-8"));
             fileWriter.write(json);
             fileWriter.close();
             System.out.println("Successful!!");

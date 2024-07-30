@@ -12,7 +12,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -43,7 +42,7 @@ public class Controller implements Initializable{
     TextField numberPage;
 
     ObservableList<String> list = FXCollections.observableArrayList();
-    static JsonArray arrayOfNews = new ActionOnJson().read("src\\main\\resources\\com\\gui\\data.json");
+    static JsonArray arrayOfNews = new ActionOnJson().read("src\\main\\resources\\com\\data\\data.json");
     int currentPage = 1;
     static int Max = 0;
 

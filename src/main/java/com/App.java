@@ -1,4 +1,4 @@
-package com.gui;
+package com;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -31,7 +31,7 @@ public class App extends Application {
         }
     }
     public static void main(String[] args) {
-        // new TotalData().crawl();
+        new TotalData().crawl();
         launch(args);
     }
 

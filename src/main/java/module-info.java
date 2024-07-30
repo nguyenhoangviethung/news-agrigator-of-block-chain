@@ -10,6 +10,8 @@ module com.example {
     requires org.apache.poi.poi;
     requires org.apache.poi.ooxml;
 
+    opens com;
+    exports com;
     opens com.gui;
     exports com.gui;
     opens com.crawl.dataFormat;
