@@ -1,9 +1,9 @@
 #layoutCenter {
-    -fx-background-color: #d89898;
+    -fx-background-color: #d898982d;
 }
 
 #layoutRight{
-    -fx-background-color: rgb(102, 205, 226);
+    -fx-background-color: rgba(102, 205, 226, 0.449);
 }
 
 #layoutLeft{

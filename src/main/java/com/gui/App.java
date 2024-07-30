@@ -30,9 +30,6 @@ public class App extends Application {
             e.printStackTrace();
         }
     }
-
-   
-
     public static void main(String[] args) {
         // new TotalData().crawl();
         launch(args);
