@@ -1,7 +1,6 @@
 package com.gui;
 
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import com.google.gson.JsonArray;
@@ -18,6 +17,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.Rectangle;
 
 public class Controller implements Initializable{
     @FXML
@@ -33,17 +33,15 @@ public class Controller implements Initializable{
     int currentPage = 1;
 
     @FXML
-    Button nearLate, latest;
+    Button latest;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         if( arrayOfNews.size()%15 == 0) {
             latest.setText(String.valueOf(arrayOfNews.size() / 15));
-        nearLate.setText(String.valueOf(arrayOfNews.size() / 15 - 1));
         }
         else {
             latest.setText(String.valueOf(arrayOfNews.size() / 15 + 1));
-            nearLate.setText(String.valueOf(arrayOfNews.size() / 15));
         }
 
         try {
@@ -52,7 +50,7 @@ public class Controller implements Initializable{
             listView.setItems(list);
             for(int i = 0; i < 15; i++) {
                 JsonObject jsonObject = arrayOfNews.get(i).getAsJsonObject();
-                String showString = jsonObject.get("title").getAsString() + "\n" + jsonObject.get("author").getAsString();
+                String showString = jsonObject.get("title").getAsString() + "\n" + "By: " + jsonObject.get("author").getAsString() + "  At: " + jsonObject.get("datetimeCreation").getAsString();
                 list.add(showString);
             }
         } catch (Exception e) {
@@ -66,6 +64,10 @@ public class Controller implements Initializable{
                 if(n!= null) {
                             Image image = ActionOnJson.images[(int)n + 15*(currentPage-1)];
                             imageView.setImage(image);
+                            Rectangle clip = new Rectangle(imageView.getFitWidth(), imageView.getFitHeight());
+                            clip.setArcWidth(40);
+                            clip.setArcHeight(40);
+                            imageView.setClip(clip);
                             summary.setText(arrayOfNews.get((int)n).getAsJsonObject().get("summary").getAsString());
                     }
                 }
@@ -94,7 +96,8 @@ public class Controller implements Initializable{
                 break;
         }
         
-        // list.clear();
+        imageView.setImage(ActionOnJson.images[(currentPage-1)*15]);
+        summary.setText(arrayOfNews.get((currentPage-1)*15).getAsJsonObject().get("summary").getAsString());
         int k = 15;
         for(int j = (currentPage-1)*15; j < (currentPage*15); j++) {
             if(j == arrayOfNews.size()) {
@@ -102,7 +105,7 @@ public class Controller implements Initializable{
                 break;
             }
             JsonObject  jsonObject = arrayOfNews.get(j).getAsJsonObject();
-            String showString = jsonObject.get("title").getAsString() + "\n" + jsonObject.get("author").getAsString();
+            String showString = jsonObject.get("title").getAsString() + "\n" + "By: " +jsonObject.get("author").getAsString() + "   At: " + jsonObject.get("datetimeCreation").getAsString();
             list.add(showString);
             list.remove(0);
             k--;

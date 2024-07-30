@@ -1,9 +1,52 @@
-#vBox {
-    -fx-background-color: #cfbcbc;
+#layoutCenter {
+    -fx-background-color: #d89898;
 }
 
+#layoutRight{
+    -fx-background-color: rgb(102, 205, 226);
+}
+
+#layoutLeft{
+    -fx-background-color: rgba(0, 0, 0, 0.8);
+}
+
+#homeButton{
+    -fx-font-weight: bold;
+    -fx-font-family: "Verdana";
+}
 .menu-item {
     -fx-min-height: 60px; /* chiều cao của mỗi phần tử con trong menu */
     -fx-alignment: center;
 }
+
+.buttonPage {
+        -fx-background-color: #f8f8f800;
+        -fx-text-fill: rgb(0, 0, 0); /* Màu chữ trắng */
+        -fx-font-size: 12px; 
+        -fx-font-family: "Verdana";
+        -fx-border-color: black; /* Màu viền đen */
+        -fx-border-width: 2px; /* Độ rộng viền 2 điểm */
+        -fx-border-radius: 10px; /* Bán kính viền 5 điểm */
+        -fx-background-radius: 10px; /* Bán kính nền 5 điểm */
+}
+
+.summaryLabel {
+    -fx-font-family: "Bookman";
+}
+
+.listView{
+    -fx-border-radius: 30px;
+    -fx-border-radius: 40px;
+    -fx-text-fill: rgb(255, 255, 255);
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+.listView .cell {
+    -fx-background-insets: 3px;
+    -fx-border-color: rgb(102, 69, 177);
+    -fx-border-radius: 5px;
+    -fx-background-color: rgba(104, 151, 153, 0.8);
+}
+
 
