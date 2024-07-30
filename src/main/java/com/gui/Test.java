@@ -7,6 +7,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+@SuppressWarnings("exports")
 public class Test extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {

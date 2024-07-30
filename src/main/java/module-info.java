@@ -12,4 +12,6 @@ module com.example {
 
     opens com.gui;
     exports com.gui;
+    opens com.crawl.dataFormat;
+    exports com.crawl.dataFormat;
 }
