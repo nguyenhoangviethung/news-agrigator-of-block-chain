@@ -43,18 +43,15 @@ public class Controller implements Initializable{
     TextField numberPage;
 
     ObservableList<String> list = FXCollections.observableArrayList();
-    JsonArray arrayOfNews = new ActionOnJson().read("src\\main\\resources\\com\\gui\\data.json");
+    static JsonArray arrayOfNews = new ActionOnJson().read("src\\main\\resources\\com\\gui\\data.json");
     int currentPage = 1;
+    static int Max = 0;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        if( arrayOfNews.size()%15 == 0) {
-            latest.setText(String.valueOf(arrayOfNews.size() / 15));
-        }
-        else {
-            latest.setText(String.valueOf(arrayOfNews.size() / 15 + 1));
-        }
-
+        getMaxPage();
+        latest.setText(String.valueOf(Max));
+        
         try {
             ActionOnJson.loadImage(arrayOfNews);
             Thread.sleep(5000);
@@ -69,10 +66,20 @@ public class Controller implements Initializable{
         handleOfNumberPage();
     }
 
+    static void getMaxPage(){
+        if( arrayOfNews.size()%15 == 0) {
+            Max = arrayOfNews.size() / 15;
+        }
+        else {
+            Max = arrayOfNews.size() / 15 + 1;
+        }
+    }
+
     @FXML
     void handleOfListView(MouseEvent event) {
         if(event.getClickCount() == 1) {
             listView.getSelectionModel().selectedIndexProperty().addListener((ob, o, n) -> {
+                //theo dõi sự thay đổi khi chọn một bản tin
                 if(n!= null) {
                             Image image = ActionOnJson.images[(int)n + 15*(currentPage-1)];
                             imageView.setImage(image);
@@ -86,7 +93,7 @@ public class Controller implements Initializable{
             );
         }
         if(event.getClickCount() == 2) {
-            int n = listView.getSelectionModel().getSelectedIndex();
+            int n = listView.getSelectionModel().getSelectedIndex(); //chọn vị trí trong bản tin
                 Stage stage = new Stage();
                 WebView webView = new WebView();
                 WebEngine engine = webView.getEngine();
@@ -104,17 +111,17 @@ public class Controller implements Initializable{
     void handleOfPageNumber(ActionEvent event) {
         Button selectedButton = (Button) event.getSource();
         switch (selectedButton.getText().toLowerCase()) {
+            case "<":
+                if(currentPage > 1) currentPage--;
+                break;
+            case ">":
+                if(currentPage < Max) currentPage++;
+                break;
             case "first page":
                 currentPage = 1;
                 break;
             case "end page":
-                if(arrayOfNews.size()%15 == 0) {
-                    currentPage = arrayOfNews.size() / 15;
-                }
-                else {
-                    currentPage = arrayOfNews.size() / 15 + 1;
-                }
-                
+                currentPage = Max;                
                 break;
             default:
                 currentPage = Integer.parseInt(selectedButton.getText());

@@ -23,6 +23,7 @@
         -fx-background-color: #f8f8f800;
         -fx-text-fill: rgb(0, 0, 0); /* Màu chữ trắng */
         -fx-font-size: 12px; 
+        -fx-text-alignment: center;
         -fx-font-family: "Verdana";
         -fx-border-color: black; /* Màu viền đen */
         -fx-border-width: 2px; /* Độ rộng viền 2 điểm */
