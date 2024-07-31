@@ -31,7 +31,7 @@ public class App extends Application {
         }
     }
     public static void main(String[] args) {
-        new TotalData().crawl();
+        // new TotalData().crawl();
         launch(args);
     }
 

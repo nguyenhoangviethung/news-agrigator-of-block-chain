@@ -114,7 +114,7 @@ public class DataListFormat {
         try {
             Element titleElement = doc.selectFirst("meta[property=og:title]");
             if(titleElement == null) return "unknown";
-            title = titleElement.attr("content") + "\n\n";
+            title = titleElement.attr("content");
         } catch(Exception e) {
             e.printStackTrace();
         }   

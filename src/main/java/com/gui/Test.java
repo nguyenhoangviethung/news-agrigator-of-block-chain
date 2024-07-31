@@ -2,24 +2,56 @@ package com.gui;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.controlsfx.control.textfield.AutoCompletionBinding;
+import org.controlsfx.control.textfield.TextFields;
 
-@SuppressWarnings("exports")
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 public class Test extends Application {
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        String url = "https://www.coindesk.com/resizer/3XS7K8QRpHBaUXN8ICyFDO05NVk=/1056x594/filters:quality(80):format(webp)/cloudfront-us-east-1.images.arcpublishing.com/coindesk/ZCUDHLPSB5EDBHDOIO2BDNJVI4";
-        Image image = new Image(url);
-        ImageView imageView = new ImageView();
-        imageView.setImage(image);
 
-        AnchorPane  layout = new AnchorPane();
-        layout.getChildren().add(imageView);
-        Scene scene = new Scene(layout, 800, 600);
+    @Override
+    public void start(Stage primaryStage) {
+        TextField textField = new TextField();
+
+        List<String> possibleSuggestions = List.of("apple", "banana", "grape", "orange", "strawberry", "melon", "watermelon", "cherry");
+
+        AutoCompletionBinding<String> autoCompletionBinding = TextFields.bindAutoCompletion(textField, suggestionRequest -> {
+            List<String> filteredSuggestions = new ArrayList<>();
+            String userText = suggestionRequest.getUserText().toLowerCase();
+
+            for (String suggestion : possibleSuggestions) {
+                if (suggestion.toLowerCase().contains(userText)) {
+                    filteredSuggestions.add(suggestion);
+                }
+                if (filteredSuggestions.size() >= 5) { // Giới hạn số từ được đề xuất
+                    break;
+                }
+            }
+
+            return filteredSuggestions;
+        });
+
+        textField.setOnAction(event -> {
+            String currentText = textField.getText();
+            Optional<String> match = possibleSuggestions.stream()
+                    .filter(suggestion -> suggestion.equalsIgnoreCase(currentText))
+                    .findFirst();
+
+            if (match.isEmpty()) {
+                textField.setText(""); // Xóa văn bản nếu không có từ nào khớp
+            }
+        });
+
+        VBox vBox = new VBox(textField);
+        Scene scene = new Scene(vBox, 300, 200);
+
         primaryStage.setScene(scene);
+        primaryStage.setTitle("AutoComplete Example");
         primaryStage.show();
     }
 

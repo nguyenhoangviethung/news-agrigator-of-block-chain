@@ -3,16 +3,19 @@ package com.gui;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
 import javafx.scene.image.Image;
+import javafx.util.Pair;
 
-public class ActionOnJson {
+public class OtherActionAndJson {
     String path;
     static Image[] images = new Image[5000];
 
@@ -40,7 +43,7 @@ public class ActionOnJson {
     }
 
     static void loadImage(JsonArray arrayOfNews) {
-        int count = 100;
+        int count = arrayOfNews.size();
         CountDownLatch latch = new CountDownLatch(count);
         for(int i = 0; i < arrayOfNews.size(); i++) {
             int j = i;
@@ -58,5 +61,27 @@ public class ActionOnJson {
             latch.await();
         } catch (Exception e) {
         }        
+    }
+
+    List<String> loadSuggestions(String path) {
+        // List<String> suggestionList = new ArrayList<>();
+        List<String> suggestionArray = new ArrayList<>();
+        try {
+            JsonArray jsonArray = read("src\\main\\resources\\com\\data\\data.json");
+            for(int i = 0; i < jsonArray.size(); i++) {
+                suggestionArray.add(jsonArray.get(i).getAsJsonObject().get("title").getAsString());
+                // System.out.println(suggestionArray);
+            }
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            String json = gson.toJson(suggestionArray);
+            FileWriter fileWriter = new FileWriter(path, Charset.forName("UTF-8"));
+            fileWriter.write(json);
+            fileWriter.close();
+            System.out.println(("SC"));
+            // System.out.println(suggestionArray);
+            return suggestionArray;
+        } catch (Exception e) {
+            return null;
+        }
     }
 }

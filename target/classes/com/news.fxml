@@ -31,7 +31,7 @@
                </styleClass></ListView>
             <AnchorPane prefHeight="80.0" prefWidth="516.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <TextField layoutX="193.0" layoutY="14.0" prefHeight="26.0" prefWidth="377.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0" />
+                  <TextField fx:id="search" layoutX="193.0" layoutY="14.0" prefHeight="26.0" prefWidth="377.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0" />
                </children>
                <padding>
                   <Insets right="12.0" />
@@ -62,7 +62,7 @@
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor></Button>
-                        <TextField fx:id="numberPage" onAction="#handleOfNumberPage" prefHeight="30.0" prefWidth="58.0" styleClass="buttonPage" />
+                        <TextField fx:id="numberPage" alignment="CENTER" onAction="#handleOfNumberPage" prefHeight="30.0" prefWidth="58.0" styleClass="buttonPage" />
                         <Button fx:id="latest" layoutX="360.0" layoutY="10.0" minWidth="22.0" mnemonicParsing="false" onAction="#handleOfPageNumber" prefHeight="30.0" prefWidth="38.0" style="-fx-background-color: rgba(255, 255, 255, 0);" styleClass="buttonPage" text="10">
                            <cursor>
                               <Cursor fx:constant="HAND" />
@@ -113,7 +113,7 @@
       </AnchorPane>
       <AnchorPane id="layoutLeft" layoutY="12.0" prefHeight="679.0" prefWidth="134.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="12.0">
          <children>
-            <Button id="homeButton" layoutX="3.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="133.0" style="-fx-background-color: rgba(255, 255, 255, 0);" text="Home" textAlignment="CENTER">
+            <Button id="homeButton" fx:id="home" layoutX="3.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="133.0" style="-fx-background-color: rgba(255, 255, 255, 0);" text="Home" textAlignment="CENTER">
                <font>
                   <Font size="24.0" />
                </font>
